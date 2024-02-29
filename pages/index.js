@@ -37,8 +37,8 @@ const App = () => {
 
   const getWeatherData = async () => {
     try {
-      const openWeatherMapApiKey = '0ce155c6773cadbcb306f8991144c4b0'
-      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${openWeatherMapApiKey}&dt=${selectedDate.getTime() /
+      const apiKey = process.env.NEXT_PUBLIC_OPENWEATHERMAP_API_KEY
+      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&dt=${selectedDate.getTime() /
         1000}`
       const response = await axios.get(apiUrl)
       setWeatherData(response.data)
@@ -65,8 +65,8 @@ const App = () => {
 
       const calendarId =
         'c_3d0b72a09abcdc6c2d823f38db43a2bd5ce5319f9646dff2750a1283eb0edc7d@group.calendar.google.com'
-      const apiKey = 'AIzaSyBzB5rFMq3AEJuQMFlM2cjS3n908R1cv04'
-      const apiUrl = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apiKey}&timeMin=${startOfMonth.toISOString()}&timeMax=${endOfMonth.toISOString()}`
+      const apikey = process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_API_KEY
+      const apiUrl = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?key=${apikey}&timeMin=${startOfMonth.toISOString()}&timeMax=${endOfMonth.toISOString()}`
 
       const response = await axios.get(apiUrl)
       setEvents(response.data.items)
